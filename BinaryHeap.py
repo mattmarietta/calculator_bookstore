@@ -52,8 +52,8 @@ class BinaryHeap(Queue, Tree):
         self.a[0] = self.a[self.n - 1]
         self.n = self.n - 1
         self._trickle_down_root()
-        if (3 * self.n) < len(self.a):
-            self._resize()
+        #if (3 * self.n) < len(self.a):
+        #    self._resize()
         return x
 
     def depth(self, u) -> int:
@@ -144,20 +144,14 @@ class BinaryHeap(Queue, Tree):
                 min_idx = l_idx
             elif mini == self.a[r_idx]:
                 min_idx = r_idx
-            elif mini == self.a[i]:
+            else:
                 min_idx = i
             v = self.a[i]
             self.a[i] = self.a[min_idx]
             self.a[min_idx] = v
-            ind = min_idx
-            l_idx = left(ind)
-            r_idx = right(ind)
+            i = min_idx
+            l_idx = left(i)
+            r_idx = right(i)
 
     def __str__(self):
         return str(self.a[0:self.n])
-
-    def printValues(self):
-        print(f"in order = {self._in_order()}")
-        print(f"bf order = {self.bf_order()}")
-        print(f"post order = {self.post_order()}")
-        print(f"")
